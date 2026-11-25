@@ -2,6 +2,10 @@ from fastapi import APIRouter
 from app.schemas.health import HealthResponse
 import logging 
 
+from sqlalchemy import text
+
+from app.database import engine
+
 logger= logging.getLogger(__name__)
 
 router = APIRouter(tags=["health"])
@@ -11,3 +15,8 @@ async def health_check():
     logger.debug("Health check called")
     logger.info("Health check OK")
     return {"status": "ok"}
+@router.get("/health/db")
+def health_db():
+    with engine.connect() as conn:
+        conn.execute(text("SELECT 1"))
+    return {"database": "ok"}
