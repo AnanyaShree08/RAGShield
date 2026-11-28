@@ -5,3 +5,5 @@ from app.models.document_chunk import DocumentChunk
 from app.models.permission import Permission
 from app.models.conversation import Conversation
 from app.models.message import Message
+from app.models.retrieval_log import RetrievalLog
+from app.models.retrieval_log_chunk import RetrievalLogChunk
